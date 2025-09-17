@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp-like Chat</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2>Chat with John</h2>
+        </div>
+        <div class="chat-messages">
+            <div class="message received">
+                <p>Hello!</p>
+            </div>
+            <div class="message sent">
+                <p>Hi! How are you?</p>
+            </div>
+            <div class="message received">
+                <p>I'm good, thanks!</p>
+            </div>
+        </div>
+        <div class="chat-input">
+ <input type="text" id="message-input" placeholder="Type a message...">
+            <button id="send-button">Send</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+CSS (in styles.css file)
+
+.chat-container {
+    width: 300px;
+    height: 500px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.chat-header {
+    background-color: #075e54;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+.chat-messages {
+    padding: 10px;
+    overflow-y: auto;
+    height: 400px;
+}
+
+.message {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.received {
+    background-color: #dcf8c6;
+    align-self: flex-start;
+}
+
+.sent {
+    background-color: #fff;
+    align-self: flex-end;
+}
+
+.chat-input {
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}
+
+#message-input {
+    width: 70%;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+}
+
+#send-button {
+    width: 30%;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: #075e54;
+    color: #fff;
+}
+
+const messageInput = document.getElementById('message-input');
+const sendButton = document.getElementById('send-button');
+const chatMessages = document.querySelector('.chat-messages');
+
+sendButton.addEventListener('click', () => {
+    const message = messageInput.value.trim();
+    if (message) {
+        const newMessage = document.createElement('div');
+        newMessage.classList.add('message', 'sent');
+        newMessage.innerHTML = `<p>${message}</p>`;
+        chatMessages.appendChild(newMessage);
+        messageInput.value = '';
+    }
+});
+
